@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень, ножницы, бумага</title>
+</head>
+<body>
+    <script>
+        const computerPlay = () => {
+        let random = Math.floor(Math.random() * 3);
+        if (random === 0) {
+            return 'камень';
+        } else if (random === 1) {
+            return 'бумага';
+        } else if (random === 2) {
+            return 'ножницы';
+        }
+    }
+
+    const round = (playerSelection = prompt('Выберите "камень", "ножницы" или "бумага"!'), computerSelection = computerPlay()) => {
+        let result;
+        if (playerSelection.toLowerCase() === 'камень') {
+            switch (computerSelection) {
+                case 'ножницы':
+                  result = 'Вы выиграли! Камень бьёт ножницы';
+                break;
+                case 'бумага':
+                  result = 'Вы проиграли! Бумага бьёт камень';
+                break;
+                case 'камень':
+                  result = 'Ничья!';
+                break;
+                default:
+                  result = 'Введите нормальное значение';
+            }
+        
+        } else if (playerSelection.toLowerCase() === 'бумага') {
+            switch (computerSelection) {
+                case 'ножницы':
+                    result = 'Вы проиграли! Ножницы бьют бумагу';
+                break;
+                case 'камень':
+                    result = 'Вы выиграли! Бумага бьёт камень';
+                break;
+                case 'бумага':
+                  result = 'Ничья!';
+                break;
+                default:
+                    result = 'Введите нормальное значение';
+            
+            }
+        } else if (playerSelection.toLowerCase() === 'ножницы') {
+            switch (computerSelection) {
+                case 'бумага':
+                    result = 'Вы выиграли! Ножницы бьют бумагу';
+                break;
+                case 'камень':
+                    result = 'Вы проиграли! Камень бьёт ножницы';
+                break;
+                case 'ножницы':
+                  result = 'Ничья!';
+                break;
+                default:
+                    result = 'Введите нормальное значение';
+        }
+    } else {
+        result = 'Неверное значение!';
+    }
+    return result;
+}
+
+     const game = () => {
+         let resultComp = 0;
+         let resultPlayer = 0;
+         let countRound
+    for (let i = 0; i < 5; i = i + 1) {
+         countRound = round()
+         console.log(countRound);
+         if (countRound[3] === 'в') {            //Думал, как сделать проверку на строку, решил схитрить. Сделал провервку на букву "В" и букву "П"
+            resultPlayer = resultPlayer + 1;
+         } else if (countRound[3] === 'п') {
+            resultComp = resultComp + 1;
+         }
+    }
+    return `Счёт: Игрок:${resultPlayer}, Компьютер:${resultComp}`;
+}
+           
+
+    console.log(game());
+    </script>
+</body>
+</html>
